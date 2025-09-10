@@ -13,57 +13,135 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #2c3e50;
-            background: linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 50%, #81d4fa 100%);
+            color: #1a202c;
+            background: #0f172a;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 50%, rgba(29, 78, 216, 0.1) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="financial-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.5" fill="%23059669" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1" fill="%232563eb" opacity="0.4"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="4s" repeatCount="indefinite"/></circle><circle cx="50" cy="60" r="1.2" fill="%2306b6d4" opacity="0.35"><animate attributeName="opacity" values="0.35;0.7;0.35" dur="5s" repeatCount="indefinite"/></circle><path d="M10 70 Q30 50 50 65 T90 60" stroke="%232563eb" stroke-width="0.5" opacity="0.2" fill="none"/><rect x="70" y="80" width="8" height="12" fill="%23059669" opacity="0.15"/><rect x="75" y="75" width="8" height="17" fill="%23059669" opacity="0.15"/><rect x="80" y="78" width="8" height="14" fill="%23059669" opacity="0.15"/></pattern></defs><rect width="1000" height="1000" fill="url(%23financial-pattern)"/></svg>');
+            opacity: 0.6;
+            z-index: -1;
+            animation: drift 60s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-20px) translateY(-30px); }
+            50% { transform: translateX(20px) translateY(-20px); }
+            75% { transform: translateX(-10px) translateY(10px); }
+        }
+
+        .neural-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1000"><defs><radialGradient id="node-gradient" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%2359a0f8" stop-opacity="0.8"/><stop offset="100%" stop-color="%2359a0f8" stop-opacity="0"/></radialGradient></defs><g opacity="0.1"><circle cx="200" cy="150" r="4" fill="url(%23node-gradient)"><animate attributeName="r" values="4;6;4" dur="4s" repeatCount="indefinite"/></circle><circle cx="800" cy="300" r="3" fill="url(%23node-gradient)"><animate attributeName="r" values="3;5;3" dur="5s" repeatCount="indefinite"/></circle><circle cx="1400" cy="200" r="5" fill="url(%23node-gradient)"><animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite"/></circle><circle cx="600" cy="500" r="3.5" fill="url(%23node-gradient)"><animate attributeName="r" values="3.5;5.5;3.5" dur="6s" repeatCount="indefinite"/></circle><circle cx="1200" cy="600" r="4" fill="url(%23node-gradient)"><animate attributeName="r" values="4;6;4" dur="4.5s" repeatCount="indefinite"/></circle><path d="M200 150 Q400 250 800 300" stroke="%2359a0f8" stroke-width="1" opacity="0.3" fill="none"><animate attributeName="stroke-dasharray" values="0 1000;1000 1000;0 1000" dur="8s" repeatCount="indefinite"/></path><path d="M800 300 Q1000 400 1400 200" stroke="%2359a0f8" stroke-width="1" opacity="0.3" fill="none"><animate attributeName="stroke-dasharray" values="0 1000;1000 1000;0 1000" dur="10s" repeatCount="indefinite"/></path><path d="M600 500 Q800 350 1200 600" stroke="%2359a0f8" stroke-width="1" opacity="0.3" fill="none"><animate attributeName="stroke-dasharray" values="0 1000;1000 1000;0 1000" dur="12s" repeatCount="indefinite"/></path></g></svg>');
+            z-index: -2;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .header {
             text-align: center;
-            padding: 80px 0;
-            color: #1565c0;
+            padding: 100px 0;
+            color: white;
             position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.05) 100%);
+            border-radius: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .header::before {
-            content: '';
+        .floating-elements {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="%2381d4fa" stroke-width="1" opacity="0.3"/></pattern></defs><rect width="400" height="200" fill="url(%23grid)"/></svg>');
-            opacity: 0.5;
-            z-index: 1;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 30px;
         }
 
-        .header-content {
-            position: relative;
-            z-index: 2;
+        .float-item {
+            position: absolute;
+            opacity: 0.6;
+            animation: float-around 15s infinite ease-in-out;
+        }
+
+        .float-item:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            font-size: 2em;
+            color: #10b981;
+        }
+
+        .float-item:nth-child(2) {
+            top: 30%;
+            right: 15%;
+            animation-delay: 3s;
+            font-size: 1.5em;
+            color: #3b82f6;
+        }
+
+        .float-item:nth-child(3) {
+            bottom: 25%;
+            left: 15%;
+            animation-delay: 6s;
+            font-size: 1.8em;
+            color: #06b6d4;
+        }
+
+        .float-item:nth-child(4) {
+            bottom: 35%;
+            right: 20%;
+            animation-delay: 9s;
+            font-size: 1.6em;
+            color: #8b5cf6;
+        }
+
+        @keyframes float-around {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(10px) rotate(-3deg); }
+            75% { transform: translateY(-15px) rotate(2deg); }
         }
 
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            margin: 0 auto 30px;
-            background: linear-gradient(135deg, #29b6f6, #0288d1);
+            margin: 0 auto 40px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
+            font-size: 72px;
             color: white;
-            border: 4px solid rgba(255,255,255,0.8);
-            box-shadow: 0 20px 40px rgba(41, 182, 246, 0.3);
+            border: 6px solid rgba(255,255,255,0.2);
+            box-shadow: 
+                0 25px 50px rgba(59, 130, 246, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2);
             position: relative;
             overflow: hidden;
         }
@@ -71,323 +149,260 @@
         .profile-img::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="3" fill="white" opacity="0.3"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle><circle cx="75" cy="75" r="2" fill="white" opacity="0.4"><animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/></circle><circle cx="75" cy="25" r="2.5" fill="white" opacity="0.2"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="2.5s" repeatCount="indefinite"/></circle></svg>');
-            border-radius: 50%;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(21, 101, 192, 0.3);
+            font-size: 4em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            letter-spacing: -2px;
         }
 
         .subtitle {
-            font-size: 1.3em;
-            margin-bottom: 30px;
+            font-size: 1.5em;
+            margin-bottom: 40px;
             opacity: 0.9;
-            font-weight: 400;
+            font-weight: 300;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 25px;
+            padding: 16px 32px;
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 8px 20px rgba(41, 182, 246, 0.3);
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #29b6f6, #0288d1);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
         }
 
         .btn-secondary {
-            background: rgba(255,255,255,0.9);
-            color: #1565c0;
-            border: 2px solid rgba(41, 182, 246, 0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(41, 182, 246, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
         }
 
         .main-content {
-            background: white;
-            margin-top: -40px;
-            border-radius: 20px 20px 0 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
             position: relative;
             z-index: 3;
-            box-shadow: 0 -8px 30px rgba(41, 182, 246, 0.15);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.15),
+                0 0 0 1px rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
         }
 
         .section {
-            padding: 60px 40px;
-            border-bottom: 1px solid #e3f2fd;
+            padding: 80px 60px;
             position: relative;
         }
 
-        .section:last-child {
-            border-bottom: none;
+        .section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
         }
 
         .section h2 {
-            font-size: 2.2em;
-            margin-bottom: 30px;
+            font-size: 3em;
+            margin-bottom: 50px;
             text-align: center;
-            color: #1565c0;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
         }
 
         .section h2::after {
             content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(90deg, #29b6f6, #0288d1);
-            margin: 15px auto 0;
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
             border-radius: 2px;
         }
 
         .about-text {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            font-size: 1.1em;
-            line-height: 1.7;
-            color: #37474f;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #374151;
             text-align: center;
-            position: relative;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(147, 51, 234, 0.02));
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
         }
 
-        .about-section {
-            background: linear-gradient(135deg, #e1f5fe 0%, #f0f9ff 100%);
+        .skills-grid, .tech-grid, .projects-grid, .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card-base {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(248,250,252,0.9));
+            padding: 35px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(59, 130, 246, 0.1);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
-        .about-section::before {
+        .card-base::before {
             content: '';
             position: absolute;
-            top: 20px;
-            right: 40px;
-            width: 100px;
-            height: 100px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="60" rx="5" fill="none" stroke="%2329b6f6" stroke-width="2"/><circle cx="30" cy="30" r="8" fill="%2329b6f6" opacity="0.6"/><rect x="45" y="25" width="30" height="3" fill="%2329b6f6" opacity="0.4"/><rect x="45" y="32" width="25" height="3" fill="%2329b6f6" opacity="0.4"/><path d="M20 80 Q50 60 80 80" stroke="%2329b6f6" stroke-width="2" fill="none"/></svg>');
-            opacity: 0.3;
-            z-index: 1;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8, #7c3aed);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+        .card-base:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 25px 50px rgba(59, 130, 246, 0.15),
+                0 0 0 1px rgba(59, 130, 246, 0.1);
         }
 
-        .skill-category {
-            background: linear-gradient(135deg, #f8fcff 0%, #e8f5e8 100%);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 4px solid #29b6f6;
-            transition: transform 0.3s ease;
-            box-shadow: 0 5px 15px rgba(41, 182, 246, 0.1);
+        .card-base:hover::before {
+            transform: scaleX(1);
         }
 
-        .skill-category:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(41, 182, 246, 0.2);
-        }
-
-        .skill-category h3 {
-            color: #1565c0;
-            margin-bottom: 15px;
-            font-size: 1.2em;
+        .skill-category h3, .tech-card h3, .project-header h3, .experience-card h3 {
+            color: #1e40af;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .skill-tag {
-            background: linear-gradient(135deg, #29b6f6, #0288d1);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            font-weight: 500;
-        }
-
-        .tech-explanation {
-            max-width: 700px;
-            margin: 0 auto 30px;
-            text-align: center;
-            font-size: 1.1em;
-            color: #37474f;
-            line-height: 1.6;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .tech-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(41, 182, 246, 0.15);
-            text-align: center;
-            transition: all 0.3s ease;
-            border-top: 4px solid #29b6f6;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tech-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(41, 182, 246, 0.05) 0%, transparent 70%);
-            transition: transform 0.3s ease;
-        }
-
-        .tech-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(41, 182, 246, 0.25);
-        }
-
-        .tech-card:hover::before {
-            transform: scale(1.2);
+            gap: 12px;
         }
 
         .tech-icon {
-            font-size: 2.5em;
-            color: #29b6f6;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
+            font-size: 3em;
+            color: #3b82f6;
+            margin-bottom: 20px;
+            text-align: center;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3));
         }
 
-        .tech-card h3 {
-            color: #1565c0;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-            position: relative;
-            z-index: 2;
+        .skill-tags, .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
         }
 
-        .tech-card p {
-            color: #546e7a;
+        .skill-tag {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 0.9em;
-            line-height: 1.5;
-            position: relative;
-            z-index: 2;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
-        .tech-section {
-            background: linear-gradient(135deg, #f3f9ff 0%, #e8f4f8 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tech-section::after {
-            content: '';
-            position: absolute;
-            bottom: 20px;
-            left: 40px;
-            width: 120px;
-            height: 80px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80"><path d="M10 40 Q30 20 50 40 T90 40" stroke="%2329b6f6" stroke-width="2" fill="none" opacity="0.4"/><circle cx="50" cy="40" r="3" fill="%2329b6f6" opacity="0.6"/><rect x="40" y="20" width="20" height="15" rx="2" fill="none" stroke="%2329b6f6" opacity="0.3"/></svg>');
-            opacity: 0.4;
-            z-index: 1;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .project-card {
-            background: white;
-            padding: 25px;
+        .project-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #1e40af;
+            padding: 6px 14px;
             border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(41, 182, 246, 0.15);
-            transition: all 0.3s ease;
-            border-left: 4px solid #29b6f6;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" fill="none" stroke="%2329b6f6" stroke-width="1" opacity="0.2"/><circle cx="20" cy="20" r="8" fill="none" stroke="%2329b6f6" stroke-width="1.5" opacity="0.3"/><circle cx="20" cy="20" r="2" fill="%2329b6f6" opacity="0.5"/></svg>');
-            opacity: 0.6;
-            z-index: 1;
-        }
-
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(41, 182, 246, 0.25);
+            font-size: 0.85em;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .project-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .project-header h3 {
-            color: #1565c0;
-            font-size: 1.2em;
-            flex: 1;
+            align-items: flex-start;
+            margin-bottom: 20px;
         }
 
         .project-link {
-            background: linear-gradient(135deg, #29b6f6, #0288d1);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
+            padding: 12px 16px;
+            border-radius: 12px;
             text-decoration: none;
             transition: all 0.3s ease;
-            margin-left: 15px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
         .project-link:hover {
@@ -395,133 +410,83 @@
             color: white;
         }
 
-        .project-card p {
-            color: #546e7a;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
         }
 
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .project-tag {
-            background: #e3f2fd;
-            color: #1565c0;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            font-weight: 500;
-            border: 1px solid #bbdefb;
-        }
-
-        .projects-section {
-            background: linear-gradient(135deg, #fafbff 0%, #f0f8ff 100%);
+        .contact-card {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        .projects-section::before {
+        .contact-card::before {
             content: '';
             position: absolute;
-            top: 30px;
-            right: 60px;
-            width: 80px;
-            height: 80px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect x="5" y="15" width="70" height="50" rx="3" fill="none" stroke="%2329b6f6" stroke-width="1.5" opacity="0.3"/><circle cx="20" cy="30" r="5" fill="%2329b6f6" opacity="0.2"/><rect x="35" y="27" width="30" height="2" fill="%2329b6f6" opacity="0.3"/><rect x="35" y="33" width="25" height="2" fill="%2329b6f6" opacity="0.3"/><path d="M15 55 L25 45 L35 50 L50 35 L65 40" stroke="%2329b6f6" stroke-width="2" fill="none" opacity="0.4"/></svg>');
-            opacity: 0.5;
-            z-index: 1;
-        }
-
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .experience-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(41, 182, 246, 0.15);
-            border-left: 4px solid #29b6f6;
-            transition: transform 0.3s ease;
-        }
-
-        .experience-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(41, 182, 246, 0.25);
-        }
-
-        .experience-card h3 {
-            color: #1565c0;
-            font-size: 1.3em;
-            margin-bottom: 8px;
-        }
-
-        .experience-card .role {
-            color: #29b6f6;
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 0.95em;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .contact-card {
-            background: linear-gradient(135deg, #29b6f6, #0288d1);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 8px 25px rgba(41, 182, 246, 0.3);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
         }
 
         .contact-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             color: white;
-            box-shadow: 0 15px 40px rgba(41, 182, 246, 0.4);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.4);
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
         }
 
         .contact-card i {
-            font-size: 2em;
-            margin-bottom: 15px;
+            font-size: 2.5em;
+            margin-bottom: 20px;
             display: block;
         }
 
-        .contact-card h3 {
-            margin-bottom: 5px;
-            font-size: 1.1em;
-        }
-
         .footer {
-            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            background: linear-gradient(135deg, #1e40af, #1e3a8a);
             color: white;
             text-align: center;
-            padding: 30px 0;
+            padding: 50px 0;
+            margin-top: 40px;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+        }
+
+        .tech-explanation {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #374151;
+            line-height: 1.7;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(147, 51, 234, 0.02));
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 10px;
+                padding: 15px;
             }
 
             .header {
-                padding: 60px 0;
+                padding: 60px 30px;
             }
 
             .header h1 {
@@ -529,70 +494,103 @@
             }
 
             .section {
-                padding: 40px 20px;
+                padding: 50px 30px;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .section h2 {
+                font-size: 2.2em;
+            }
+
+            .skills-grid, .tech-grid, .projects-grid, .experience-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             .profile-img {
-                width: 120px;
-                height: 120px;
-                font-size: 50px;
+                width: 140px;
+                height: 140px;
+                font-size: 56px;
+            }
+
+            .floating-elements {
+                display: none;
             }
         }
 
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
+        .parallax-scroll {
+            transform: translateZ(0);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8, #7c3aed, #3b82f6);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glow-effect:hover::after {
+            opacity: 0.7;
+            animation: rotate-border 2s linear infinite;
+        }
+
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="bg-pattern"></div>
+    <div class="neural-bg"></div>
+    
+    <div class="container parallax-scroll">
         <header class="header">
-            <div class="header-content">
-                <div class="profile-img">
-                    <img src="Profile Photo.jpeg" alt="Rakan Zayour" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                </div>
-                <h1>Rakan Zayour</h1>
-                <p class="subtitle">AI Engineer • Finance Professional</p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> Contact
-                    </a>
-                    <a href="#tech-stack" class="btn btn-secondary">
-                        <i class="fas fa-code"></i> Tech Stack
-                    </a>
-                </div>
+            <div class="floating-elements">
+                <div class="float-item"><i class="fas fa-chart-line"></i></div>
+                <div class="float-item"><i class="fas fa-robot"></i></div>
+                <div class="float-item"><i class="fas fa-brain"></i></div>
+                <div class="float-item"><i class="fas fa-coins"></i></div>
+            </div>
+            
+            <div class="profile-img glow-effect">
+                <img src="Profile Photo.jpeg" alt="Rakan Zayour" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+            </div>
+            <h1>Rakan Zayour</h1>
+            <p class="subtitle">AI Engineer • Finance Professional</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Contact Me
+                </a>
+                <a href="#tech-stack" class="btn btn-secondary">
+                    <i class="fas fa-code"></i> Tech Stack
+                </a>
             </div>
         </header>
 
         <main class="main-content">
-            <section id="about" class="section about-section">
+            <section id="about" class="section">
                 <h2>About</h2>
                 <div class="about-text">
                     <p><strong>Finance professional transitioning to AI Engineering.</strong> MSc Investment Banking (First Class), PMP certified, CFA Level II candidate. Now specializing in Python, LangChain, and agentic design.</p>
-                    <p style="margin-top: 20px;">Seeking junior AI engineer roles where I can apply analytical rigor to build intelligent systems.</p>
+                    <p style="margin-top: 25px;">Seeking junior AI engineer roles where I can apply analytical rigor to build intelligent systems that revolutionize finance.</p>
                 </div>
             </section>
 
             <section id="skills" class="section">
                 <h2>Skills</h2>
                 <div class="skills-grid">
-                    <div class="skill-category">
+                    <div class="card-base skill-category">
                         <h3><i class="fas fa-robot"></i> AI & Tech</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Python</span>
@@ -602,7 +600,7 @@
                             <span class="skill-tag">Data Analytics</span>
                         </div>
                     </div>
-                    <div class="skill-category">
+                    <div class="card-base skill-category">
                         <h3><i class="fas fa-chart-line"></i> Finance</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Investment Banking</span>
@@ -611,7 +609,7 @@
                             <span class="skill-tag">CFA Level II</span>
                         </div>
                     </div>
-                    <div class="skill-category">
+                    <div class="card-base skill-category">
                         <h3><i class="fas fa-users"></i> Leadership</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Project Management</span>
@@ -623,38 +621,38 @@
                 </div>
             </section>
 
-            <section id="tech-stack" class="section tech-section">
+            <section id="tech-stack" class="section">
                 <h2>Tech Stack</h2>
                 <div class="tech-explanation">
-                    <p>Building intelligent systems with modern AI frameworks and tools. Specialized in <strong>agentic design</strong> - creating AI agents that can reason, plan, and execute complex tasks autonomously.</p>
+                    <p>Building intelligent systems with modern AI frameworks and tools. Specialized in <strong>agentic design</strong> - creating AI agents that can reason, plan, and execute complex financial tasks autonomously.</p>
                 </div>
                 <div class="tech-grid">
-                    <div class="tech-card">
+                    <div class="card-base tech-card">
                         <div class="tech-icon"><i class="fab fa-python"></i></div>
                         <h3>Python</h3>
-                        <p>Core language for AI development, data processing, and automation</p>
+                        <p>Core language for AI development, data processing, and financial automation</p>
                     </div>
-                    <div class="tech-card">
+                    <div class="card-base tech-card">
                         <div class="tech-icon"><i class="fas fa-link"></i></div>
                         <h3>LangChain</h3>
                         <p>Building LLM applications with chains, agents, and memory systems</p>
                     </div>
-                    <div class="tech-card">
+                    <div class="card-base tech-card">
                         <div class="tech-icon"><i class="fas fa-robot"></i></div>
                         <h3>Agentic Design</h3>
                         <p>Creating autonomous AI agents with reasoning and decision-making capabilities</p>
                     </div>
-                    <div class="tech-card">
+                    <div class="card-base tech-card">
                         <div class="tech-icon"><i class="fas fa-database"></i></div>
                         <h3>Vector DBs</h3>
                         <p>Implementing RAG systems with Pinecone, Chroma, and FAISS</p>
                     </div>
-                    <div class="tech-card">
+                    <div class="card-base tech-card">
                         <div class="tech-icon"><i class="fas fa-cloud"></i></div>
                         <h3>APIs & Cloud</h3>
                         <p>OpenAI, Anthropic APIs, Docker, and cloud deployment</p>
                     </div>
-                    <div class="tech-card">
+                    <div class="card-base tech-card">
                         <div class="tech-icon"><i class="fas fa-chart-bar"></i></div>
                         <h3>Data Science</h3>
                         <p>Pandas, NumPy, Scikit-learn for financial data analysis</p>
@@ -662,10 +660,10 @@
                 </div>
             </section>
 
-            <section id="projects" class="section projects-section">
+            <section id="projects" class="section">
                 <h2>Projects</h2>
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <div class="card-base project-card">
                         <div class="project-header">
                             <h3><i class="fas fa-brain"></i> AI Financial Advisor</h3>
                             <a href="https://github.com/rakanzayour/ai-financial-advisor" target="_blank" class="project-link">
@@ -679,7 +677,7 @@
                             <span class="project-tag">OpenAI API</span>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="card-base project-card">
                         <div class="project-header">
                             <h3><i class="fas fa-comments"></i> Document QA System</h3>
                             <a href="https://github.com/rakanzayour/document-qa-agent" target="_blank" class="project-link">
@@ -693,7 +691,7 @@
                             <span class="project-tag">Streamlit</span>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="card-base project-card">
                         <div class="project-header">
                             <h3><i class="fas fa-tasks"></i> Multi-Agent Workflow</h3>
                             <a href="https://github.com/rakanzayour/multi-agent-system" target="_blank" class="project-link">
@@ -707,14 +705,14 @@
                             <span class="project-tag">Python</span>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="card-base project-card">
                         <div class="project-header">
                             <h3><i class="fas fa-chart-line"></i> Risk Analysis Bot</h3>
                             <a href="https://github.com/rakanzayour/risk-analysis-bot" target="_blank" class="project-link">
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
-                        <p>Automated risk assessment tool that processes financial statements and generates risk reports.</p>
+                        <p>Automated risk assessment tool that processes financial statements and generates comprehensive risk reports.</p>
                         <div class="project-tags">
                             <span class="project-tag">Python</span>
                             <span class="project-tag">Pandas</span>
@@ -722,7 +720,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="text-align: center; margin-top: 30px;">
+                <div style="text-align: center; margin-top: 50px;">
                     <a href="https://github.com/rakanzayour" target="_blank" class="btn btn-primary">
                         <i class="fab fa-github"></i> View All Projects
                     </a>
@@ -732,22 +730,22 @@
             <section id="experience" class="section">
                 <h2>Experience</h2>
                 <div class="experience-grid">
-                    <div class="experience-card">
+                    <div class="card-base experience-card">
                         <h3><i class="fas fa-graduation-cap"></i> Education</h3>
                         <div class="role">MSc Investment Banking - First Class</div>
                         <p>Queen Mary University of London</p>
                     </div>
-                    <div class="experience-card">
+                    <div class="card-base experience-card">
                         <h3><i class="fas fa-briefcase"></i> VP Finance</h3>
                         <div class="role">PMI Liberia Chapter</div>
                         <p>Financial modeling, training proposals, partnerships</p>
                     </div>
-                    <div class="experience-card">
+                    <div class="card-base experience-card">
                         <h3><i class="fas fa-rocket"></i> Entrepreneur</h3>
                         <div class="role">Co-founder, Multiple Ventures</div>
                         <p>Business creation, risk management, venture development</p>
                     </div>
-                    <div class="experience-card">
+                    <div class="card-base experience-card">
                         <h3><i class="fas fa-certificate"></i> Certifications</h3>
                         <div class="role">Professional Development</div>
                         <p>PMP Certified • CFA Level II • AI Engineering courses</p>
@@ -783,12 +781,12 @@
         </main>
 
         <footer class="footer">
-            <p>&copy; 2025 Rakan Zayour • Available for hire</p>
+            <p>&copy; 2025 Rakan Zayour • Available for hire • AI Engineer & Finance Professional</p>
         </footer>
     </div>
 
     <script>
-        // Smooth scrolling
+        // Enhanced smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -802,7 +800,12 @@
             });
         });
 
-        // Simple scroll animations
+        // Advanced scroll animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -811,22 +814,159 @@
                     entry.target.classList.add('fade-in');
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        document.querySelectorAll('.experience-card, .skill-category, .tech-card, .project-card').forEach(el => {
+        // Observe all cards for animation
+        document.querySelectorAll('.card-base').forEach((el, index) => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.5s ease';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `all 0.6s ease ${index * 0.1}s`;
             observer.observe(el);
         });
 
-        // Add floating animation to profile image
+        // Parallax effect for background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            const bgPattern = document.querySelector('.bg-pattern');
+            const neuralBg = document.querySelector('.neural-bg');
+            
+            if (bgPattern) {
+                bgPattern.style.transform = `translateY(${rate}px)`;
+            }
+            if (neuralBg) {
+                neuralBg.style.transform = `translateY(${rate * 0.3}px)`;
+            }
+        });
+
+        // Dynamic background color based on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            const hue = Math.floor(240 - (scrollPercent * 60)); // From blue to purple
+            document.body.style.background = `hsl(${hue}, 85%, 8%)`;
+        });
+
+        // Add glitch effect to title on hover
+        const title = document.querySelector('.header h1');
+        if (title) {
+            title.addEventListener('mouseenter', function() {
+                this.style.animation = 'glitch 0.3s ease-in-out';
+            });
+            
+            title.addEventListener('animationend', function() {
+                this.style.animation = '';
+            });
+        }
+
+        // Add typing effect to subtitle
+        const subtitle = document.querySelector('.subtitle');
+        if (subtitle) {
+            const text = subtitle.textContent;
+            subtitle.textContent = '';
+            subtitle.style.borderRight = '2px solid white';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    subtitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                } else {
+                    subtitle.style.borderRight = 'none';
+                }
+            }
+            
+            setTimeout(typeWriter, 1500);
+        }
+
+        // Add random floating animation to profile image
         const profileImg = document.querySelector('.profile-img');
-        let floatDirection = 1;
-        setInterval(() => {
-            profileImg.style.transform = `translateY(${floatDirection * 5}px)`;
-            floatDirection *= -1;
-        }, 2000);
+        if (profileImg) {
+            let floatY = 0;
+            setInterval(() => {
+                floatY += 0.1;
+                profileImg.style.transform = `translateY(${Math.sin(floatY) * 10}px) rotateY(${Math.cos(floatY * 0.5) * 5}deg)`;
+            }, 50);
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes glitch {
+                0% { transform: translateX(0); }
+                20% { transform: translateX(-2px) rotateY(1deg); }
+                40% { transform: translateX(2px) rotateY(-1deg); }
+                60% { transform: translateX(-2px) rotateY(1deg); }
+                80% { transform: translateX(2px) rotateY(-1deg); }
+                100% { transform: translateX(0); }
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .fade-in {
+                animation: fadeInUp 0.8s ease-out forwards;
+            }
+            
+            @keyframes pulse-glow {
+                0%, 100% {
+                    box-shadow: 0 25px 50px rgba(59, 130, 246, 0.4);
+                }
+                50% {
+                    box-shadow: 0 25px 50px rgba(59, 130, 246, 0.6);
+                }
+            }
+            
+            .profile-img:hover {
+                animation: pulse-glow 2s infinite;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add interactive cursor effect
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.cursor');
+            if (!cursor) {
+                const newCursor = document.createElement('div');
+                newCursor.className = 'cursor';
+                newCursor.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    background: radial-gradient(circle, rgba(59, 130, 246, 0.6), transparent);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    transition: transform 0.1s ease;
+                `;
+                document.body.appendChild(newCursor);
+            }
+            
+            const currentCursor = document.querySelector('.cursor');
+            if (currentCursor) {
+                currentCursor.style.left = (e.clientX - 10) + 'px';
+                currentCursor.style.top = (e.clientY - 10) + 'px';
+            }
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.card-base').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
     </script>
 </body>
 </html>
